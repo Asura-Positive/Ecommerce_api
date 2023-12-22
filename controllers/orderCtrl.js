@@ -23,12 +23,12 @@ export const createOrderCtrl = asyncHandler(async (req, res) => {
   if (couponFound?.isExpired) {
     throw new Error("Coupon has expired");
   }
-  // if (!couponFound) {
-  //   throw new Error("Coupon does exists");
-  // }
+  if (!couponFound) {
+    throw new Error("Coupon does exists");
+  }
 
   //get discount
-  const discount = couponFound?.discount / 100;
+  // const discount = couponFound?.discount / 100;
 
   //Get the payload(customer, orderItems, shipppingAddress, totalPrice);
   const { orderItems, shippingAddress, totalPrice } = req.body;
@@ -48,7 +48,8 @@ export const createOrderCtrl = asyncHandler(async (req, res) => {
     user: user?._id,
     orderItems,
     shippingAddress,
-    totalPrice: couponFound ? totalPrice - totalPrice * discount : totalPrice,
+    // totalPrice: couponFound ? totalPrice - totalPrice * discount : totalPrice,
+    totalPrice,
   });
 
   //Update the product qty
