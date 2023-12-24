@@ -89,8 +89,8 @@ export const createOrderCtrl = asyncHandler(async (req, res) => {
       orderId: JSON.stringify(order?._id),
     },
     mode: "payment",
-    success_url: "https://ecommerce-3ed6f.web.app/success",
-    cancel_url: "https://ecommerce-3ed6f.web.app/cancel",
+    success_url: "http://localhost:3000/success",
+    cancel_url: "http://localhost:3000/success",
   });
   res.send({ url: session.url });
 });
